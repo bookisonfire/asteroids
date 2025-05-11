@@ -3,7 +3,8 @@
 ideas to extend the project in the future. 
 
 
-    Add a scoring system
+    ✅ Add a "game over" screen
+    ✅ Add a scoring system
     Implement multiple lives and respawning
     Add an explosion effect for the asteroids
     Add acceleration to the player movement
