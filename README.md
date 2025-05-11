@@ -1,5 +1,8 @@
 [boot.dev](https://www.boot.dev) asteroids project
 
+![image](https://github.com/user-attachments/assets/b3919632-d144-4dd4-8b9a-a46cf0e92dcc)
+
+
 ideas to extend the project in the future. 
 
 
