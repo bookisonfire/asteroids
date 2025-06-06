@@ -5,35 +5,36 @@ from constants import *
 
 
 class AsteroidField(pygame.sprite.Sprite):
-    edges = [
-        [
-            pygame.Vector2(1, 0),
-            lambda y: pygame.Vector2(-ASTEROID_MAX_RADIUS, y * SCREEN_HEIGHT),
-        ],
-        [
-            pygame.Vector2(-1, 0),
-            lambda y: pygame.Vector2(
-                SCREEN_WIDTH + ASTEROID_MAX_RADIUS, y * SCREEN_HEIGHT
-            ),
-        ],
-        [
-            pygame.Vector2(0, 1),
-            lambda x: pygame.Vector2(x * SCREEN_WIDTH, -ASTEROID_MAX_RADIUS),
-        ],
-        [
-            pygame.Vector2(0, -1),
-            lambda x: pygame.Vector2(
-                x * SCREEN_WIDTH, SCREEN_HEIGHT + ASTEROID_MAX_RADIUS
-            ),
-        ],
-    ]
-
-    def __init__(self):
+    def __init__(self, screen_width, screen_height):
         pygame.sprite.Sprite.__init__(self, self.containers)
+        self.screen_width = screen_width
+        self.screen_height = screen_height
         self.spawn_timer = 0.0
+        self.edges = [
+            [
+                pygame.Vector2(1, 0),
+                lambda y: pygame.Vector2(-ASTEROID_MAX_RADIUS, y * self.screen_height),
+            ],
+            [
+                pygame.Vector2(-1, 0),
+                lambda y: pygame.Vector2(
+                    self.screen_width + ASTEROID_MAX_RADIUS, y * self.screen_height
+                ),
+            ],
+            [
+                pygame.Vector2(0, 1),
+                lambda x: pygame.Vector2(x * self.screen_width, -ASTEROID_MAX_RADIUS),
+            ],
+            [
+                pygame.Vector2(0, -1),
+                lambda x: pygame.Vector2(
+                    x * self.screen_width, self.screen_height + ASTEROID_MAX_RADIUS
+                ),
+            ],
+        ]
 
     def spawn(self, radius, position, velocity):
-        asteroid = Asteroid(position.x, position.y, radius)
+        asteroid = Asteroid(position.x, position.y, radius, self.screen_width, self.screen_height)
         asteroid.velocity = velocity
 
     def update(self, dt):
